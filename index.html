@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RickRoll Video</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <video class="fullscreen-video" controls autoplay muted loop playsinline>
-        <source src="RickRoll.mp4" type="video/mp4">
-        Tu navegador no soporta la etiqueta de video.
-    </video>
-</body>
-</html>
+<video id="v" class="fullscreen-video"
+       autoplay muted loop playsinline controls>
+  <source src="RickRoll.mp4" type="video/mp4">
+  Tu navegador no soporta video.
+</video>
+
+<script>
+  const v = document.getElementById('v');
+  v.play().catch(() => {
+    // autoplay was denied, start after first user interaction
+    window.addEventListener('click', () => v.play(), { once: true });
+    window.addEventListener('touchstart', () => v.play(), { once: true });
+  });
+</script>
